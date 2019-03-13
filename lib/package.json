@@ -1,0 +1,29 @@
+{
+  "name": "react-native-vk-refresh",
+  "version": "1.0.0",
+  "description": "Refresh component for React Native (iOS and Android)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vickness/react-native-vk-refresh.git"
+  },
+  "keywords": [
+    "react-native-refresh",
+    "flatlist",
+    "refresh-flat-list",
+    "scrollview",
+    "refresh"
+  ],
+  "author": "Vick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vickness/react-native-vk-refresh/issues"
+  },
+  "homepage": "https://github.com/vickness/react-native-vk-refresh#readme",
+  "dependencies": {
+    "prop-types": "^15.6.2"
+  }
+}

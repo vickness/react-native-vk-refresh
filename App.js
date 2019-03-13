@@ -8,8 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, SafeAreaView, View, FlatList, ScrollView} from 'react-native';
-import BaseRefreshComponent from "./lib/src/BaseRefreshComponent";
-import RefreshStatus from "./lib/src/RefreshStatus";
+import RefreshComponent, { RefreshStatus, RefreshHeader, RefreshFooter} from "./lib/index";
 import FlatItemCell from "./FlatItemCell";
 
 
@@ -55,7 +54,7 @@ export default class App extends Component<Props> {
   render() {
     return (
         <SafeAreaView style={styles.container}>
-          <BaseRefreshComponent
+          <RefreshComponent
               ContentComponent={FlatList}
               renderItem={() => <FlatItemCell/>}
               data={this.state.dataItems}
