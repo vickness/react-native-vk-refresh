@@ -20,10 +20,10 @@ yarn add react-native-vk-refresh
 ## Usage
 
 ```javascript
-import BaseRefreshComponent from 'react-native-vk-refresh'
+import RefreshComponent, { RefreshStatus, RefreshHeader, RefreshFooter} from 'react-native-vk-refresh';
 
 /** 支持FlatList*/ 
-<BaseRefreshComponent
+<RefreshComponent
       ContentComponent={FlatList}
       renderItem={() => <FlatItemCell/>}
       data={[]}
@@ -69,7 +69,7 @@ _onFooterRefresh = (notify) => {
 
 ```javascript
 /** 支持 ScrollView*/ 
-<BaseRefreshComponent
+<RefreshComponent
        ContentComponent={ScrollView}
        onHeaderRefresh={this._onHeaderRefresh}
 >
