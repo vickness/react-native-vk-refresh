@@ -1,10 +1,10 @@
 # react-native-vk-refresh
 
-A React Native button component .
+Refresh component for React Native (iOS and Android)
 
 <p align="center">
-<img src="https://github.com/vickness/react-native-vk-refresh/blob/master/screenshot/image1.gif" width="300">
-<img src="https://github.com/vickness/react-native-vk-refresh/blob/master/screenshot/image2.gif" width="300">
+<img src="https://github.com/vickness/react-native-vk-refresh/blob/master/screenshot/image1.gif" height="500">
+<img src="https://github.com/vickness/react-native-vk-refresh/blob/master/screenshot/image2.gif" height="500">
 </p>
 
 ## Install
@@ -12,25 +12,21 @@ A React Native button component .
 Install the package:
 
 ```bash
-$ npm i react-native-vk-refresh --save
-or yarn add react-native-vk-refresh
-```
-
-Import the ``BaseRefreshComponent`` component:
-
-```javascript
-import BaseRefreshComponent from 'react-native-vk-refresh'
+npm i react-native-vk-refresh --save
+or 
+yarn add react-native-vk-refresh
 ```
 
 ## Usage
 
 ```javascript
+import BaseRefreshComponent from 'react-native-vk-refresh'
 
-/** 在FlatList中使用*/ 
+/** 支持FlatList*/ 
 <BaseRefreshComponent
       ContentComponent={FlatList}
       renderItem={() => <FlatItemCell/>}
-      data={this.state.dataItems}
+      data={[]}
       onHeaderRefresh={this._onHeaderRefresh}
       onFooterRefresh={this._onFooterRefresh}
 />
@@ -39,10 +35,6 @@ import BaseRefreshComponent from 'react-native-vk-refresh'
 _onHeaderRefresh = (notify) => {
 
    setTimeout(() => {
-
-     this.setState({
-       dataItems: FlatItems
-     });
 
      // 刷新完成，无提示
      notify();
@@ -61,11 +53,6 @@ _onFooterRefresh = (notify) => {
 
    setTimeout(() => {
 
-     const oldItems = this.state.dataItems;
-     this.setState({
-       dataItems: oldItems.concat(FlatItems)
-     });
-
      // 继续加载
      notify();
      
@@ -81,7 +68,7 @@ _onFooterRefresh = (notify) => {
 ```
 
 ```javascript
-/** 在ScrollView中使用*/ 
+/** 支持 ScrollView*/ 
 <BaseRefreshComponent
        ContentComponent={ScrollView}
        onHeaderRefresh={this._onHeaderRefresh}
@@ -93,6 +80,16 @@ _onFooterRefresh = (notify) => {
        <FlatItemCell/>
 </BaseRefreshComponent>
 ```
+## Props
+Prop                            | Type      | Optional | Default           | Description
+-----------------------         | ------    | -------- | ---------         | -----------
+...ContentComponent.propTypes   |           | Yes      |                   | 传入 ContentComponent 的所有属性
+HeaderComponent                 | object    | Yes      | BaseRefreshHeader | 自定义刷新组件，继承 BaseRefreshHeader 并实现所有方法
+FooterComponent                 | object    | Yes      | BaseRefreshFooter | 自定义加载组件，继承 BaseRefreshFooter 并实现所有方法
+ContentComponent                | object    | Yes      | ScrollView        | 内容组件，支持FlatList, ScrollView或第三方滑动组件
+headerHeight                    | number    | Yes      | 60                | 刷新组件高度，自定义组件必须填写
+onHeaderRefresh                 | func      | Yes      |                   | 刷新回调, 带notify(RefreshStatus)参数，通知刷新完成
+onFooterRefresh                 | func      | Yes      |                   | 加载回调，带notify(RefreshStatus)参数，通知加载完成
 
 # License
 
