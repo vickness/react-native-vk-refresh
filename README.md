@@ -2,7 +2,7 @@
 
 Refresh component for React Native (iOS and Android)
 
-<p align="center">
+<p>
 <img src="https://github.com/vickness/react-native-vk-refresh/blob/master/screenshot/image1.gif" height="500">
 <img src="https://github.com/vickness/react-native-vk-refresh/blob/master/screenshot/image2.gif" height="500">
 </p>

@@ -9,7 +9,9 @@
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "16.8.3",
-    "react-native": "0.58.6"
+    "react-native": "0.58.6",
+    "react-native-parallax-scroll-view": "^0.21.3",
+    "react-native-super-grid": "^3.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
