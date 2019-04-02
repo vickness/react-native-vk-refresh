@@ -8,14 +8,14 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, SafeAreaView, View, FlatList, ScrollView} from 'react-native';
-import RefreshComponent, { RefreshStatus, RefreshHeader, RefreshFooter} from "./lib/index";
+import { RefreshStatus, RefreshHeader, RefreshFooter, DefaultRefreshComponent, BaseRefreshComponent } from "./lib/index";
 import FlatItemCell from "./FlatItemCell";
-import GridView from "react-native-super-grid";
+import { FlatGrid } from "react-native-super-grid";
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 const FlatItems = [
   "","","",""
-  ,"","","",""
+  // ,"","","",""
 ];
 
 type Props = {};
@@ -85,53 +85,70 @@ export default class App extends Component<Props> {
   //   );
   // }
 
+  // render() {
+  //   return (
+  //       <RefreshComponent
+  //           ContentComponent={ParallaxScrollView}
+  //           onHeaderRefresh={this._onHeaderRefresh}
+  //           onFooterRefresh={this._onFooterRefresh}
+  //
+  //           backgroundColor="#ddd"
+  //           contentBackgroundColor="#ddd"
+  //           parallaxHeaderHeight={180}
+  //           // renderScrollComponent={() => <Animated.View />}
+  //           //renderScrollComponent={() => <AnimatedCustomScrollView />}
+  //           renderForeground={() => (
+  //               <View style={{ height: 180, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  //                 <Text>Hello World!</Text>
+  //               </View>
+  //           )}
+  //       >
+  //
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //         <FlatItemCell/>
+  //
+  //       </RefreshComponent>
+  //   );
+  // }
+
   render() {
     return (
-        <RefreshComponent
-            ContentComponent={ParallaxScrollView}
-            onHeaderRefresh={this._onHeaderRefresh}
-            onFooterRefresh={this._onFooterRefresh}
-
-            backgroundColor="#ddd"
-            contentBackgroundColor="#ddd"
-            parallaxHeaderHeight={180}
-            // renderScrollComponent={() => <Animated.View />}
-            //renderScrollComponent={() => <AnimatedCustomScrollView />}
-            renderForeground={() => (
-                <View style={{ height: 180, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                  <Text>Hello World!</Text>
-                </View>
-            )}
-        >
-
-          <FlatItemCell/>
-          <FlatItemCell/>
-          <FlatItemCell/>
-          <FlatItemCell/>
-          <FlatItemCell/>
-          <FlatItemCell/>
-
-          <FlatItemCell/>
-          <FlatItemCell/>
-          <FlatItemCell/>
-          <FlatItemCell/>
-          <FlatItemCell/>
-          <FlatItemCell/>
-
-        </RefreshComponent>
+        <SafeAreaView style={styles.container}>
+          <DefaultRefreshComponent
+              ContentComponent={FlatList}
+              renderItem={() => <FlatItemCell/>}
+              data={this.state.dataItems}
+              onHeaderRefresh={this._onHeaderRefresh}
+              onFooterRefresh={this._onFooterRefresh}
+          />
+        </SafeAreaView>
     );
   }
 
   /** 下拉刷新*/
   _onHeaderRefresh = (notify) => {
 
+    console.log("开始刷新数据");
     setTimeout(() => {
 
       this.setState({
         dataItems: FlatItems
       });
 
-      notify(RefreshStatus.HeaderFinish);
+      console.log("刷新结束");
+      //notify && notify();
+      notify && notify(RefreshStatus.HeaderFinish);
 
     }, 2000);
   };
@@ -139,6 +156,7 @@ export default class App extends Component<Props> {
   /** 上拉加载*/
   _onFooterRefresh = (notify) => {
 
+    console.log("开始加载数据");
     setTimeout(() => {
 
       const oldItems = this.state.dataItems;
@@ -146,11 +164,16 @@ export default class App extends Component<Props> {
         dataItems: oldItems.concat(FlatItems)
       });
 
-      notify(RefreshStatus.FooterFailure);
+      console.log("加载结束");
+
+      //notify && notify();
+
+      notify && notify(RefreshStatus.FooterFailure);
 
     }, 2000);
   };
 }
+
 
 const styles = StyleSheet.create({
   container: {

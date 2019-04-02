@@ -20,17 +20,26 @@ yarn add react-native-vk-refresh
 ## Usage
 
 ```javascript
-import RefreshComponent, { RefreshStatus, RefreshHeader, RefreshFooter} from 'react-native-vk-refresh';
+import {BaseRefreshComponent, DefaultRefreshComponent, RefreshStatus, RefreshHeader, RefreshFooter} from 'react-native-vk-refresh';
 
-/** 支持FlatList*/ 
-<RefreshComponent
+/** 自定义下拉刷新，支持FlatList，ScrollView等滑动组件*/ 
+<BaseRefreshComponent
       ContentComponent={FlatList}
       renderItem={() => <FlatItemCell/>}
       data={[]}
       onHeaderRefresh={this._onHeaderRefresh}
       onFooterRefresh={this._onFooterRefresh}
 />
-          
+
+/** 系统下拉刷新，支持FlatList*/ 
+<DefaultRefreshComponent
+      ContentComponent={FlatList}
+      renderItem={() => <FlatItemCell/>}
+      data={[]}
+      onHeaderRefresh={this._onHeaderRefresh}
+      onFooterRefresh={this._onFooterRefresh}
+/>
+
 /** 下拉刷新*/
 _onHeaderRefresh = (notify) => {
 
