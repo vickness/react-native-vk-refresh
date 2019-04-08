@@ -126,14 +126,16 @@ export default class App extends Component<Props> {
   render() {
     return (
         <SafeAreaView style={styles.container}>
+          <View style={{height: 30, backgroundColor: 'gray'}}/>
           <DefaultRefreshComponent
               ContentComponent={FlatList}
               renderItem={() => <FlatItemCell/>}
               data={this.state.dataItems}
               onHeaderRefresh={this._onHeaderRefresh}
-              onFooterRefresh={this._onFooterRefresh}
+              //onFooterRefresh={this._onFooterRefresh}
               autoLoading={true}
           />
+          <View style={{height: 30, backgroundColor: 'gray'}}/>
         </SafeAreaView>
     );
   }
@@ -172,7 +174,7 @@ export default class App extends Component<Props> {
 
       notify && notify(RefreshStatus.FooterFailure);
 
-    });
+    },1000);
   };
 }
 

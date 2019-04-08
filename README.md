@@ -29,6 +29,7 @@ import {BaseRefreshComponent, DefaultRefreshComponent, RefreshStatus, RefreshHea
       data={[]}
       onHeaderRefresh={this._onHeaderRefresh}
       onFooterRefresh={this._onFooterRefresh}
+      autoLoading={true}
 />
 
 /** 系统下拉刷新，支持FlatList*/ 
@@ -38,6 +39,7 @@ import {BaseRefreshComponent, DefaultRefreshComponent, RefreshStatus, RefreshHea
       data={[]}
       onHeaderRefresh={this._onHeaderRefresh}
       onFooterRefresh={this._onFooterRefresh}
+      autoLoading={true}
 />
 
 /** 下拉刷新*/
@@ -99,6 +101,7 @@ ContentComponent                | object    | Yes      | ScrollView        | 内
 headerHeight                    | number    | Yes      | 60                | 刷新组件高度，自定义组件必须填写
 onHeaderRefresh                 | func      | Yes      |                   | 刷新回调, 带notify(RefreshStatus)参数，通知刷新完成
 onFooterRefresh                 | func      | Yes      |                   | 加载回调，带notify(RefreshStatus)参数，通知加载完成
+autoLoading                     | bool      | Yes      | false             | 组件加载时，是否自动加载数据
 
 # License
 
