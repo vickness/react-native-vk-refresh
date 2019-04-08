@@ -15,7 +15,7 @@ import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 const FlatItems = [
   "","","",""
-  // ,"","","",""
+  ,"","","",""
 ];
 
 type Props = {};
@@ -24,9 +24,10 @@ export default class App extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      dataItems: FlatItems
+      dataItems: []
     }
   }
+
 
   // render() {
   //   return (
@@ -131,6 +132,7 @@ export default class App extends Component<Props> {
               data={this.state.dataItems}
               onHeaderRefresh={this._onHeaderRefresh}
               onFooterRefresh={this._onFooterRefresh}
+              autoLoading={true}
           />
         </SafeAreaView>
     );
@@ -170,7 +172,7 @@ export default class App extends Component<Props> {
 
       notify && notify(RefreshStatus.FooterFailure);
 
-    }, 2000);
+    });
   };
 }
 
